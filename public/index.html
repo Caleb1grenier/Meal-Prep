@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weekday Prep | Fresh Meals for Your Work Week</title>
+  <meta name="description" content="Chef-made, macro-balanced meals delivered fresh for your work week." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#" class="logo">🥗 Weekday Prep</a>
+      <nav class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#menu">Menu</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="cart-btn" id="cartBtn" aria-label="Open cart">
+        🛒 <span id="cartCount" class="badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <p class="eyebrow">Fresh. Healthy. Done for you.</p>
+          <h1>Your work week lunches, <em>already handled.</em></h1>
+          <p class="lead">Chef-prepared, macro-balanced meals delivered every Sunday or Monday. Heat for 2 minutes and get back to your day.</p>
+          <div class="hero-cta">
+            <a href="#menu" class="btn btn-primary">Build my week</a>
+            <a href="#how" class="btn btn-ghost">How it works</a>
+          </div>
+          <p class="promo">🎉 Order 5+ meals and save <strong id="bundlePct">10</strong>% on your whole week.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="plate">🍱</div>
+          <div class="float f1">🥑</div>
+          <div class="float f2">🍗</div>
+          <div class="float f3">🥕</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="container">
+        <h2>How it works</h2>
+        <div class="steps">
+          <div class="step"><span class="step-num">1</span><h3>Pick your meals</h3><p>Choose from 5 rotating chef recipes. Mix and match as many as you like.</p></div>
+          <div class="step"><span class="step-num">2</span><h3>Choose delivery</h3><p>We deliver Sunday or Monday so your fridge is stocked for the week.</p></div>
+          <div class="step"><span class="step-num">3</span><h3>Heat &amp; eat</h3><p>Every meal is ready in about 2 minutes and stays fresh for 5 days.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="section section-alt">
+      <div class="container">
+        <h2>This week's menu</h2>
+        <p class="section-sub">All meals are made fresh with no preservatives. Calories and macros are per meal.</p>
+        <div id="menuGrid" class="menu-grid"></div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container faq">
+        <h2>Frequently asked questions</h2>
+        <details><summary>How long do meals stay fresh?</summary><p>Meals stay fresh for up to 5 days in the fridge. You can also freeze most meals for up to 30 days.</p></details>
+        <details><summary>What payment methods do you accept?</summary><p>All major credit and debit cards, Apple Pay, Google Pay and Link, processed securely by Stripe. We never see or store your card details.</p></details>
+        <details><summary>Where do you deliver?</summary><p>We currently deliver locally. Enter your address at checkout to confirm.</p></details>
+        <details><summary>Can I accommodate allergies?</summary><p>Leave a note with your order and we'll do our best. Our kitchen handles nuts, dairy, soy and gluten.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Weekday Prep. Made fresh, every week.</p>
+    </div>
+  </footer>
+
+  <!-- Cart drawer -->
+  <div id="overlay" class="overlay" hidden></div>
+  <aside id="cart" class="cart" aria-hidden="true" aria-label="Your cart">
+    <div class="cart-head">
+      <h2>Your week</h2>
+      <button id="closeCart" class="icon-btn" aria-label="Close cart">✕</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-foot">
+      <div id="bundleHint" class="bundle-hint"></div>
+      <div class="totals">
+        <div><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+        <div id="discountRow" class="discount" hidden><span>Full-week discount</span><span id="discount">-$0.00</span></div>
+        <div class="grand"><span>Total</span><span id="total">$0.00</span></div>
+      </div>
+
+      <label class="field">Delivery day
+        <select id="deliveryDay"></select>
+      </label>
+      <label class="field">Notes / allergies (optional)
+        <textarea id="notes" rows="2" maxlength="450" placeholder="e.g. no cilantro please"></textarea>
+      </label>
+
+      <p id="checkoutError" class="error" hidden></p>
+      <button id="checkoutBtn" class="btn btn-primary btn-block" disabled>Checkout</button>
+      <p class="secure">🔒 Secure payment by Stripe · Cards, Apple Pay, Google Pay</p>
+      <p id="demoNotice" class="demo" hidden>Demo mode: no Stripe key set, so no real charge will be made.</p>
+    </div>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Confirmed | Weekday Prep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="result">
+    <div class="result-card">
+      <div class="result-icon">🎉</div>
+      <h1>Your week is prepped!</h1>
+      <p id="details">Thanks for your order. A confirmation email is on its way.</p>
+      <a href="/" class="btn btn-primary">Back to menu</a>
+    </div>
+  </main>
+  <script>
+    (async () => {
+      const params = new URLSearchParams(location.search);
+      const el = document.getElementById('details');
+      const money = (c) => `$${(c / 100).toFixed(2)}`;
+      if (params.get('demo')) {
+        el.textContent = `Demo order placed for ${money(Number(params.get('total')) || 0)}. No payment was taken. Add a Stripe key to accept real payments.`;
+        return;
+      }
+      const id = params.get('session_id');
+      if (!id) return;
+      try {
+        const res = await fetch(`/api/order/${encodeURIComponent(id)}`);
+        if (!res.ok) return;
+        const o = await res.json();
+        el.textContent = `We received your payment of ${money(o.total)}. Delivery is scheduled for ${o.deliveryDay}. A receipt was sent to ${o.email}.`;
+      } catch { /* keep default message */ }
+    })();
+  </script>
+</body>
+</html>
